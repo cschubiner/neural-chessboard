@@ -1,6 +1,9 @@
 ## Clay stuff
 docker run -it chess_container /bin/bash
 
+docker run -it --mount src="$(pwd)",target=/test_container,type=bind chess_container /bin/bash
+
+
 
 ## ♔ Neural Chessboard ♔
 
