@@ -1,3 +1,7 @@
+## Clay stuff
+docker run -it chess_container /bin/bash
+
+
 ## ♔ Neural Chessboard ♔
 
 An Extremely Efficient Chess-board Detection for Non-trivial Photos

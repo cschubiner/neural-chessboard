@@ -43,9 +43,9 @@ def laps_detector(img):
 
 	img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 	img = cv2.threshold(img, 0, 255, cv2.THRESH_OTSU)[1]
-	img = cv2.Canny(img, 0, 255)	
+	img = cv2.Canny(img, 0, 255)
 	img = cv2.resize(img, (21, 21), interpolation=cv2.INTER_CUBIC)
-	
+
 	imgd = img
 
 	X = [np.where(img>int(255/2), 1, 0).ravel()]
@@ -55,9 +55,9 @@ def laps_detector(img):
 	mask = cv2.copyMakeBorder(img, top=1, bottom=1, left=1, right=1,
 		borderType=cv2.BORDER_CONSTANT, value=[255,255,255])
 	mask = cv2.bitwise_not(mask); i = 0
-	_1, contours, _2 = cv2.findContours(mask,cv2.RETR_EXTERNAL,
-				                             cv2.CHAIN_APPROX_NONE)
-	
+	# _1, contours, _2 = cv2.findContours(mask,cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+	_1, contours = cv2.findContours(mask,cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+
 	_c = np.zeros((23,23,3), np.uint8)
 
 	# geometric detector
@@ -69,7 +69,7 @@ def laps_detector(img):
 			i += 1
 		else:
 			cv2.drawContours(_c, [cnt], 0, (0,0,255), 1)
-	
+
 	if i == 4: return (True, 1)
 
 	pred = NC_LAPS_MODEL.predict(X)
@@ -103,7 +103,7 @@ def LAPS(img, lines, size=10):
 		# cropping for detector
 		dimg = img[ly1:ly2, lx1:lx2]
 		dimg_shape = np.shape(dimg)
-		
+
 		# not valid
 		if dimg_shape[0] <= 0 or dimg_shape[1] <= 0: continue
 
@@ -118,5 +118,5 @@ def LAPS(img, lines, size=10):
 
 	debug.image(img).points(points, size=5, \
 		color=debug.color()).save("laps_good_points")
-	
+
 	return points
