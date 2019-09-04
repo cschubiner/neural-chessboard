@@ -14,6 +14,9 @@ python3 main.py detect --input=photo.jpg --output=board.jpg
 python3 main.py detect --input="clayboards/IMG_1353.jpg" --output=board.jpg
 
 
+gcloud builds submit --tag gcr.io/chessboard-classification/board-fitter --timeout=86399
+gcloud beta run deploy --image gcr.io/chessboard-classification/board-fitter --platform managed
+
 
 ## ♔ Neural Chessboard ♔
 

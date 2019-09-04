@@ -17,7 +17,7 @@ save = cv2.imwrite
 
 def layer():
 	global NC_LAYER, NC_IMAGE#, NC_SCORE
-	
+
 	print(utils.ribb("==", sep="="))
 	print(utils.ribb("[%d] LAYER " % NC_LAYER, sep="="))
 	print(utils.ribb("==", sep="="), "\n")
@@ -51,6 +51,19 @@ def layer():
 	print("\n")
 
 ################################################################################
+def run_board(input, output):
+	global NC_LAYER, NC_IMAGE, NC_CONFIG
+
+	if (not os.path.isfile(input)):
+		utils.errn("error: the file \"%s\" does not exits" % input)
+
+	NC_IMAGE, NC_LAYER = ImageObject(load(input)), 0
+	for _ in range(NC_CONFIG['layers']):
+		NC_LAYER += 1; layer()
+	save(output, NC_IMAGE['orig'])
+
+	print("RUN_BOARD: %s" % input)
+
 
 def detect(args):
 	global NC_LAYER, NC_IMAGE, NC_CONFIG
@@ -80,7 +93,7 @@ def test(args):
 		detect(args)
 
 	print("TEST: %d images" % len(files))
-	
+
 ################################################################################
 
 if __name__ == "__main__":
