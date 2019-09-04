@@ -3,6 +3,16 @@ docker run -it chess_container /bin/bash
 
 docker run -it --mount src="$(pwd)",target=/test_container,type=bind chess_container /bin/bash
 
+pip3 install -r requirements.txt   # toolkit for machine learning
+
+python3 dataset.py
+python3 train.py 50
+
+python3 main.py test
+
+python3 main.py detect --input=photo.jpg --output=board.jpg
+python3 main.py detect --input="clayboards/IMG_1353.jpg" --output=board.jpg
+
 
 
 ## ♔ Neural Chessboard ♔

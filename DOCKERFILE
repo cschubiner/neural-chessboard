@@ -52,6 +52,18 @@ RUN ln -s \
   /usr/local/python/cv2/python-3.7/cv2.cpython-37m-x86_64-linux-gnu.so \
   /usr/local/lib/python3.7/site-packages/cv2.so
 
-COPY . /app
 
-RUN cd /app && pip3 install -r requirements.txt
+ENV APP_HOME /app
+WORKDIR $APP_HOME
+COPY . .
+
+# Install production dependencies.
+RUN pip3 install Flask gunicorn
+RUN pip3 install -r requirements.txt
+
+# Run the web service on container startup. Here we use the gunicorn
+# webserver, with one worker process and 8 threads.
+# For environments with multiple CPU cores, increase the number of workers
+# to be equal to the cores available.
+CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 app:app
+
