@@ -3,6 +3,9 @@ docker run -it chess_container /bin/bash
 
 docker run -it --mount src="$(pwd)",target=/test_container,type=bind chess_container /bin/bash
 
+python3 main.py detect --input="clayboards/IMG_1353.jpg" --output="clayboards_out/board_1353.jpg"
+
+
 pip3 install -r requirements.txt   # toolkit for machine learning
 
 python3 dataset.py
@@ -16,7 +19,6 @@ python3 main.py detect --input="clayboards/IMG_1353.jpg" --output=board.jpg
 
 gcloud builds submit --tag gcr.io/chessboard-classification/board-fitter --timeout=86399
 gcloud beta run deploy --image gcr.io/chessboard-classification/board-fitter --platform managed
-
 
 ## ♔ Neural Chessboard ♔
 
