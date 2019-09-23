@@ -1,4 +1,10 @@
 ## Clay stuff
+Build the container:
+docker build -t chess-container .
+docker tag chess_container gcr.io/chess-ec2/chess_container
+docker push gcr.io/chess-ec2/chess_container
+
+
 docker run -it chess_container /bin/bash
 
 docker run -it --mount src="$(pwd)",target=/test_container,type=bind chess_container /bin/bash
@@ -17,8 +23,19 @@ python3 main.py detect --input=photo.jpg --output=board.jpg
 python3 main.py detect --input="clayboards/IMG_1353.jpg" --output=board.jpg
 
 
-gcloud builds submit --tag gcr.io/chessboard-classification/board-fitter --timeout=86399
-gcloud beta run deploy --image gcr.io/chessboard-classification/board-fitter --platform managed
+For cloud run:
+  gcloud builds submit --tag gcr.io/chessboard-classification/board-fitter --timeout=86399
+  gcloud beta run deploy --image gcr.io/chessboard-classification/board-fitter --platform managed
+
+## ♔ Docker ♔
+https://cloud.google.com/container-registry/docs/pushing-and-pulling?hl=en_US
+
+docker tag chess_container gcr.io/chess-ec2/chess_container
+docker push gcr.io/chess-ec2/chess_container
+
+ON EC2:
+docker run -it gcr.io/chess-ec2/chess_container /bin/bash
+
 
 ## ♔ Neural Chessboard ♔
 

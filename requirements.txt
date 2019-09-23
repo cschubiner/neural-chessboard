@@ -6,3 +6,9 @@ numpy
 matplotlib
 h5py
 tables
+torch
+torchvision
+opencv-python
+pandas
+scikit-learn
+sklearn

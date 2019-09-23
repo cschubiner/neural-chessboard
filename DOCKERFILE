@@ -61,6 +61,10 @@ COPY . .
 RUN pip3 install Flask gunicorn
 RUN pip3 install -r requirements.txt
 
+RUN pip install -U git+https://github.com/chsasank/image_features.git
+RUN pip3 install keras
+RUN pip3 install sklearn
+
 # Run the web service on container startup. Here we use the gunicorn
 # webserver, with one worker process and 8 threads.
 # For environments with multiple CPU cores, increase the number of workers
