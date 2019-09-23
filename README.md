@@ -1,13 +1,12 @@
 ## Clay stuff
 Build the container:
 docker build -t chess-container .
-docker tag chess_container gcr.io/chess-ec2/chess_container
-docker push gcr.io/chess-ec2/chess_container
+docker tag chess-container gcr.io/chess-ec2/chess-container
+docker push gcr.io/chess-ec2/chess-container
 
+docker run -it chess-container /bin/bash
 
-docker run -it chess_container /bin/bash
-
-docker run -it --mount src="$(pwd)",target=/test_container,type=bind chess_container /bin/bash
+docker run -it --mount src="$(pwd)",target=/test_container,type=bind chess-container /bin/bash
 
 python3 main.py detect --input="clayboards/IMG_1353.jpg" --output="clayboards_out/board_1353.jpg"
 
@@ -30,11 +29,18 @@ For cloud run:
 ## ♔ Docker ♔
 https://cloud.google.com/container-registry/docs/pushing-and-pulling?hl=en_US
 
-docker tag chess_container gcr.io/chess-ec2/chess_container
-docker push gcr.io/chess-ec2/chess_container
+docker tag chess-container gcr.io/chess-ec2/chess-container
+docker push gcr.io/chess-ec2/chess-container
 
 ON EC2:
-docker run -it gcr.io/chess-ec2/chess_container /bin/bash
+docker run -it gcr.io/chess-ec2/chess-container /bin/bash
+
+## EC2
+Use the no cache dir argument to avoid all those MemoryErrors
+sudo pip3 install --no-cache-dir  -r requirements.txt
+sudo pip install --no-cache-dir  -U git+https://github.com/chsasank/image_features.git
+<!-- sudo pip3 install --no-cache-dir  opencv-python -->
+sudo pip install opencv-python-headless
 
 
 ## ♔ Neural Chessboard ♔
