@@ -35,6 +35,19 @@ docker push gcr.io/chess-ec2/chess-container
 ON EC2:
 docker run -it gcr.io/chess-ec2/chess-container /bin/bash
 
+if that doesn't work, transfer over the docker image:
+  save it first locally:
+    docker save -o docker_img.tar chess-container
+  then transfer over:
+    In the GCP Console, go to the VM Instances page.
+    GO TO THE VM INSTANCES PAGE
+    In the list of virtual machine instances, click SSH in the row of the instance that you want to connect to.
+    SSH button next to instance name.
+    After the connection is established, click the gear icon in the top right of the SSH from the Browser window and select Upload File. Alternatively, select Download File to download a file from the instance.
+  then load it:
+    docker load docker_img.tar
+
+
 ## EC2
 Use the no cache dir argument to avoid all those MemoryErrors
 sudo pip3 install --no-cache-dir  -r requirements.txt
