@@ -50,10 +50,16 @@ if that doesn't work, transfer over the docker image:
 
 ## EC2
 Use the no cache dir argument to avoid all those MemoryErrors
-sudo pip3 install --no-cache-dir  -r requirements.txt
-sudo pip install --no-cache-dir  -U git+https://github.com/chsasank/image_features.git
 <!-- sudo pip3 install --no-cache-dir  opencv-python -->
-sudo pip install opencv-python-headless
+<!-- sudo python3 -m pip install  --no-cache-dir  opencv-python-headless -->
+<!-- sudo python3 -m pip install  --no-cache-dir  tensorflow -->
+pip3 install --no-cache-dir  -U git+https://github.com/chsasank/image_features.git
+pip3 install --no-cache-dir  -r requirements.txt
+pip3 install  --no-cache-dir  keras
+pip3 install  --no-cache-dir  pandas
+pip3 install  --no-cache-dir  flask
+
+python3.7 app.py
 
 
 ## ♔ Neural Chessboard ♔

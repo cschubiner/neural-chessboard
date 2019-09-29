@@ -55,9 +55,14 @@ def laps_detector(img):
 	mask = cv2.copyMakeBorder(img, top=1, bottom=1, left=1, right=1,
 		borderType=cv2.BORDER_CONSTANT, value=[255,255,255])
 	mask = cv2.bitwise_not(mask); i = 0
+	contours_ret = cv2.findContours(mask,cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+	if len(contours_ret) == 2:
+		contours, _2 = contours_ret
+	else:
+		_1, contours, _2 = contours_ret
+
 	# _1, contours, _2 = cv2.findContours(mask,cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-	contours, _2 = cv2.findContours(mask,cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-	# _1, contours = cv2.findContours(mask,cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+	# contours, _2 = cv2.findContours(mask,cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
 
 	_c = np.zeros((23,23,3), np.uint8)
 
