@@ -14,7 +14,7 @@ while 1:
 
   if added:
       print("Added: ", ", ".join (added), '... Processing...')
-      res = main.run_board(path_to_watch + added[0], "processed/board" + str(uuid.uuid1())[:8] + ".jpg")
+      res = main.run_board(path_to_watch + added[0], "processed/processed_" + added[0])
 
   if removed: print("Removed: ", ", ".join (removed))
   before = after

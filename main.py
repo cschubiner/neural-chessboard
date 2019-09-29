@@ -62,7 +62,7 @@ def run_board(input, output):
 		NC_LAYER += 1; layer()
 	save(output, NC_IMAGE['orig'])
 
-	print("RUN_BOARD: %s" % input)
+	print("RUN_BOARD: %s. - - output: " % input, output)
 
 
 def detect(args):
